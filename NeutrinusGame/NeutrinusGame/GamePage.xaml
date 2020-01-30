@@ -6,7 +6,6 @@
              mc:Ignorable="d"
              x:Class="NeutrinusGame.GamePage">
     <ContentPage.Content>
-
         <AbsoluteLayout x:Name="GameAbsLayout" VerticalOptions="CenterAndExpand">
 
             <Image Source="griglia_prova_1.png" AbsoluteLayout.LayoutBounds="1, 1, 1, 1" AbsoluteLayout.LayoutFlags="All"/>
