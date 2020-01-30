@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="NeutrinusGame.GamePage">
+    <ContentPage.Content>
+
+        <AbsoluteLayout x:Name="GameAbsLayout" VerticalOptions="CenterAndExpand">
+
+            <Image Source="griglia_prova_1.png" AbsoluteLayout.LayoutBounds="1, 1, 1, 1" AbsoluteLayout.LayoutFlags="All"/>
+
+            <Grid AbsoluteLayout.LayoutBounds="1, 1, 1, 1" AbsoluteLayout.LayoutFlags="All" RowSpacing="5" ColumnSpacing="0" Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="75"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+
+
+
+                <BoxView x:Name="Cella00" BackgroundColor="Transparent" Grid.Column="0" Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+                <BoxView x:Name="Cella10" BackgroundColor="Transparent" Grid.Column="1" Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+                <BoxView x:Name="Cella20" BackgroundColor="Transparent" Grid.Column="2" Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+                <BoxView x:Name="Cella30" BackgroundColor="Transparent" Grid.Column="3" Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </BoxView.GestureRecognizers>
+                </BoxView>
+                <BoxView x:Name="Cella40" BackgroundColor="Transparent" Grid.Column="4" Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+
+                <BoxView BackgroundColor="Transparent" Grid.Column="0" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+                <BoxView BackgroundColor="Transparent" Grid.Column="1" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+                <BoxView BackgroundColor="Transparent" Grid.Column="2" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+                <BoxView BackgroundColor="Transparent" Grid.Column="3" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+                <BoxView BackgroundColor="Transparent" Grid.Column="4" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+
+                <BoxView BackgroundColor="Transparent" Grid.Column="0" Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+                <BoxView BackgroundColor="Transparent" Grid.Column="1" Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+                <BoxView BackgroundColor="Transparent" Grid.Column="2" Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+                <BoxView BackgroundColor="Transparent" Grid.Column="3" Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+                <BoxView BackgroundColor="Transparent" Grid.Column="4" Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+
+                <BoxView BackgroundColor="Transparent" Grid.Column="0" Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+                <BoxView BackgroundColor="Transparent" Grid.Column="1" Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+                <BoxView BackgroundColor="Transparent" Grid.Column="2" Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+                <BoxView BackgroundColor="Transparent" Grid.Column="3" Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+                <BoxView BackgroundColor="Transparent" Grid.Column="4" Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+
+                <BoxView BackgroundColor="Transparent" Grid.Column="0" Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+                <BoxView BackgroundColor="Transparent" Grid.Column="1" Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+                <BoxView BackgroundColor="Transparent" Grid.Column="2" Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+                <BoxView BackgroundColor="Transparent" Grid.Column="3" Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+                <BoxView x:Name="Cella44" BackgroundColor="Transparent" Grid.Column="4" Grid.Row="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
+
+            </Grid>
+
+        </AbsoluteLayout>
+        
+    </ContentPage.Content>
+</ContentPage>
