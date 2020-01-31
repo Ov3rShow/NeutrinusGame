@@ -15,7 +15,7 @@ namespace NeutrinusGame
         List<Image> whitePawns;
         Image lastImageTouched;
         Point p;
-        // ciao
+
         public GamePage()
         {
             InitializeComponent();
@@ -64,6 +64,7 @@ namespace NeutrinusGame
                             break;
                         }
                     case 4:
+
                         {
                             moveImage(Cella40, img);
                             break;
