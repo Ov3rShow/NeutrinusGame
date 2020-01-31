@@ -10,7 +10,7 @@ namespace NeutrinusGame
         {
             InitializeComponent();
 
-            MainPage = new GamePage();
+            MainPage = new Menu();
         }
 
         protected override void OnStart()
