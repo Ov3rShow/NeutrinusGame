@@ -17,9 +17,17 @@ namespace NeutrinusGame
             InitializeComponent();
         }
 
-        private void btn_newGame(object sender, EventArgs e)
+        private async void btn_newGame(object sender, EventArgs e)
         {
-           Navigation.PushModalAsync(new GamePage());
+            GamePage gamePage = new GamePage();
+
+            await Navigation.PushModalAsync(gamePage);
+
+            gamePage.CreateWhitePawns();
+            gamePage.PrepareWhitePawns();
+            gamePage.CreateBlackPawns();
+            gamePage.PrepareBlackPawns();
+            gamePage.CreateNeutrinus();
         }
     }
 }
