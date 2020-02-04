@@ -26,6 +26,12 @@ namespace NeutrinusGame
             FindFirstPlayer();
         }
 
+       public void setPlayersName(string nomeBianco,string nomeNero)
+        {
+            LabelGiocatoreBianco.Text = nomeBianco;
+            LabelGiocatoreNero.Text = nomeNero;
+        }
+
         void FindFirstPlayer()
         {
             giocatore = Engine.GetInstance().GetPrimoGiocatore();
