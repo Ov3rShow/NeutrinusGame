@@ -50,13 +50,14 @@ namespace NeutrinusGame
 
             gamePage.setPlayersName(g1, g2);
 
+            await Navigation.PushModalAsync(gamePage);
+
             gamePage.CreateWhitePawns();
             gamePage.PrepareWhitePawns();
             gamePage.CreateBlackPawns();
             gamePage.PrepareBlackPawns();
             gamePage.CreateNeutrinus();
 
-            await Navigation.PushModalAsync(gamePage);
 
         }
     }
