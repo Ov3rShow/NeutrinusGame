@@ -32,6 +32,27 @@ namespace NeutrinusGame
             LabelGiocatoreNero.Text = nomeNero;
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+
+                bool answer = await this.DisplayAlert("Uscire?", "Sicuro di voler uscire dal gioco?", "Si", "Annulla");
+                if (answer)
+                {
+                    await Navigation.PopModalAsync();
+                    await Navigation.PushModalAsync(new Menu());
+                }
+
+            });
+
+            return true;
+           
+        }
+
+        
+
+
         void FindFirstPlayer()
         {
             giocatore = Engine.GetInstance().GetPrimoGiocatore();

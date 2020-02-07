@@ -22,12 +22,16 @@
             </StackLayout>
 
             <ContentView x:Name="popupLoginView" BackgroundColor="#C0808080" Padding="10, 0" IsVisible="false" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
-                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-                    <StackLayout Orientation="Vertical" HeightRequest="250" WidthRequest="300" BackgroundColor="White">
-                        <Label Margin="10,10,10,0" Text="Inserisci i nomi dei giocatori" FontSize="Large" VerticalOptions="CenterAndExpand"/>
-                        <Entry x:Name="NomeG1" Margin="10,5" Placeholder="Giocatore 1" VerticalOptions="CenterAndExpand"/>
-                        <Entry x:Name="NomeG2" Margin="10,0" Placeholder="Giocatore 2" VerticalOptions="CenterAndExpand"/>
-                        <Button Margin="10,5" Text="OK" Clicked="btn_OkPopup" VerticalOptions="CenterAndExpand"/>
+                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <StackLayout Orientation="Vertical" HeightRequest="250" WidthRequest="350" BackgroundColor="White">
+                        <Label Margin="20,20,0,0" Text="Nomi dei giocatori"  Font="Bold" TextColor="Black" FontSize="Title" VerticalOptions="CenterAndExpand"/>
+                        <Label Margin="20,0,0,0" Text="Inserisci i nomi dei giocatori" FontSize="Subtitle" VerticalOptions="CenterAndExpand"/>
+                        <Entry x:Name="NomeG1" Margin="20,5" Placeholder="Giocatore 1" VerticalOptions="CenterAndExpand"/>
+                        <Entry x:Name="NomeG2" Margin="20,0" Placeholder="Giocatore 2" VerticalOptions="CenterAndExpand"/>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                            <Button Margin="20,5" Text="Annulla" Clicked="btn_CancelPopup" HorizontalOptions="EndAndExpand" TextColor="DeepPink" BackgroundColor="Transparent" />
+                            <Button Margin="20,5" Text="Ok" Clicked="btn_OkPopup" HorizontalOptions="EndAndExpand" TextColor="DeepPink" BackgroundColor="Transparent"/>
+                        </StackLayout>
                     </StackLayout>
                 </StackLayout>
             </ContentView>

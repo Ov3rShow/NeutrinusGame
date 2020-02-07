@@ -34,21 +34,30 @@ namespace NeutrinusGame
 
         private async void btn_OkPopup(object sender, EventArgs e)
         {
-            popupLoginView.IsVisible = false;
-            string g1= NomeG1.Text, g2= NomeG2.Text;
-            // se vuoto va in eccezzione why?
-
-            if (g1.Equals(null) || g1.Equals("")){
+            string g1 = "", g2 = "";
+            if (NomeG1.Text == null || NomeG1.Text.Equals(""))
+            {
                 g1 = "Giocatore 1";
             }
-            if (g2.Equals(null) || g2.Equals(""))
+            else
+            {
+                g1 = NomeG1.Text;
+            }
+            if (NomeG2.Text == null || NomeG2.Text.Equals(""))
             {
                 g2 = "Giocatore 2";
             }
-
+            else
+            {
+                g2 = NomeG2.Text;
+            }
             GamePage gamePage = new GamePage();
 
             gamePage.setPlayersName(g1, g2);
+
+            NomeG1.Text = "";
+            NomeG2.Text = "";
+            popupLoginView.IsVisible = false;
 
             await Navigation.PushModalAsync(gamePage);
 
@@ -60,5 +69,14 @@ namespace NeutrinusGame
 
 
         }
+
+        private void btn_CancelPopup(object sender, EventArgs e)
+        {
+            NomeG1.Text = "";
+            NomeG2.Text = "";
+            popupLoginView.IsVisible = false;
+        }
+
+        
     }
 }
