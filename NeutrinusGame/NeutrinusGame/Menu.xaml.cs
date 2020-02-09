@@ -51,9 +51,7 @@ namespace NeutrinusGame
             {
                 g2 = NomeG2.Text;
             }
-            GamePage gamePage = new GamePage();
-
-            gamePage.setPlayersName(g1, g2);
+            GamePage gamePage = new GamePage(g1,g2);
 
             NomeG1.Text = "";
             NomeG2.Text = "";

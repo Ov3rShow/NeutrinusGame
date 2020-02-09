@@ -21,17 +21,15 @@ namespace NeutrinusGame
 
         Color possibleMoveColor = Color.Coral;
 
-        public GamePage()
+        string nomePedinaBianca, nomePerdinaNera;
+
+        public GamePage(string nomeBianco, string nomeNero)
         {
             InitializeComponent();
-
+            nomePedinaBianca = nomeBianco;
+            nomePerdinaNera = nomeNero;
             FindFirstPlayer();
-        }
-
-       public void setPlayersName(string nomeBianco,string nomeNero)
-        {
-            LabelGiocatoreBianco.Text = nomeBianco;
-            LabelGiocatoreNero.Text = nomeNero;
+           
         }
 
         protected override bool OnBackButtonPressed()
@@ -52,9 +50,6 @@ namespace NeutrinusGame
            
         }
 
-        
-
-
         void FindFirstPlayer()
         {
             giocatore = Engine.GetInstance().GetPrimoGiocatore();
@@ -67,13 +62,17 @@ namespace NeutrinusGame
             if (giocatore.Equals(Giocatore.GiocatoreBianco))
             {
                 LabelGiocatoreBianco.ScaleTo(1.5, 250, Easing.SinOut);
+                LabelGiocatoreBianco.Text= nomePedinaBianca + " tocca a te!";
                 LabelGiocatoreNero.ScaleTo(1, 250, Easing.SinOut);
+                LabelGiocatoreNero.Text = nomePerdinaNera;
             }
                 
             else if (giocatore.Equals(Giocatore.GiocatoreNero))
             {
                 LabelGiocatoreNero.ScaleTo(1.5, 250, Easing.SinOut);
+                LabelGiocatoreNero.Text= nomePerdinaNera +  " tocca a te!";
                 LabelGiocatoreBianco.ScaleTo(1, 250, Easing.SinOut);
+                LabelGiocatoreBianco.Text = nomePedinaBianca;
             }
         }
 
@@ -158,13 +157,7 @@ namespace NeutrinusGame
 
         private void onTap(View arg1, object arg2)
         {
-            if(arg1 == neutrinus)
-            {
-                giocatore = Engine.GetInstance().GetPrimoGiocatore();
-                ShowPlayerTurn();
-            }
-            else
-            {
+           
                 int x = ((CustomImage)arg1).TableColumn;
                 int y = ((CustomImage)arg1).TableRow;
                 List<Movimento> movimenti = Engine.GetInstance().MovimentiPossibili(x, y);
@@ -172,7 +165,7 @@ namespace NeutrinusGame
 
                 ClearAllCellsTint();
                 TintCells(coordinate);
-            }
+            
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)

@@ -79,12 +79,12 @@ namespace NeutrinusGame
                 {
                     for (int y = 0; y < NUM_COLUMNS; y++)
                     {
-                        //prima riga, pedine nere
+                        //prima riga, pedine bianche
                         if (x == 0)
-                            matrice[y, x] = Pedina.Nera;
-                        //seconda riga, pedine bianche
-                        else if (x == 4)
                             matrice[y, x] = Pedina.Bianca;
+                        //seconda riga, pedine nere
+                        else if (x == 4)
+                            matrice[y, x] = Pedina.Nera;
                         //pedina centrale, neutrinus
                         else if (x == 2 && y == 2)
                             matrice[y, x] = Pedina.Neutrinus;
@@ -107,49 +107,49 @@ namespace NeutrinusGame
                 //controllo su sinistra
                 suppX = x - 1;
                 suppY = y - 1;
-                if ((suppX >= 0 && suppY >= 0) && matrice[suppY, suppX] == Pedina.Vuoto)
+                if ((suppX >= 0 && suppY >= 0) && matrice[suppX, suppY] == Pedina.Vuoto)
                     movimenti.Add(Movimento.SinistraSu);
 
                 //controllo su
                 suppX = x;
                 suppY = y - 1;
-                if ((suppX >= 0 && suppY >= 0) && matrice[suppY, suppX] == Pedina.Vuoto)
+                if ((suppX >= 0 && suppY >= 0) && matrice[suppX, suppY] == Pedina.Vuoto)
                     movimenti.Add(Movimento.Su);
 
                 //controllo su destra
                 suppX = x + 1;
                 suppY = y - 1;
-                if ((suppX < 5 && suppY >= 0) && matrice[suppY, suppX] == Pedina.Vuoto)
+                if ((suppX < 5 && suppY >= 0) && matrice[suppX, suppY] == Pedina.Vuoto)
                     movimenti.Add(Movimento.DestraSu);
 
                 //controllo destra
                 suppX = x + 1;
                 suppY = y;
-                if ((suppX < 5 && suppY >= 0) && matrice[suppY, suppX] == Pedina.Vuoto)
+                if ((suppX < 5 && suppY >= 0) && matrice[suppX, suppY] == Pedina.Vuoto)
                     movimenti.Add(Movimento.Destra);
 
                 //controllo giu destra
                 suppX = x + 1;
                 suppY = y + 1;
-                if ((suppX < 5 && suppY < 5) && matrice[suppY, suppX] == Pedina.Vuoto)
+                if ((suppX < 5 && suppY < 5) && matrice[suppX, suppY] == Pedina.Vuoto)
                     movimenti.Add(Movimento.DestraGiu);
 
                 //controllo giu
                 suppX = x;
                 suppY = y + 1;
-                if ((suppX >= 0 && suppY < 5) && matrice[suppY, suppX] == Pedina.Vuoto)
+                if ((suppX >= 0 && suppY < 5) && matrice[suppX, suppY] == Pedina.Vuoto)
                     movimenti.Add(Movimento.Giu);
 
                 //controllo giu sinistra
                 suppX = x - 1;
                 suppY = y + 1;
-                if ((suppX >= 0 && suppY < 5) && matrice[suppY, suppX] == Pedina.Vuoto)
+                if ((suppX >= 0 && suppY < 5) && matrice[suppX, suppY] == Pedina.Vuoto)
                     movimenti.Add(Movimento.SinistraGiu);
 
                 //controllo sinistra
                 suppX = x - 1;
                 suppY = y;
-                if ((suppX >= 0 && suppY >= 0) && matrice[suppY, suppX] == Pedina.Vuoto)
+                if ((suppX >= 0 && suppY >= 0) && matrice[suppX, suppY] == Pedina.Vuoto)
                     movimenti.Add(Movimento.Sinistra);
 
                 return movimenti;
@@ -200,7 +200,7 @@ namespace NeutrinusGame
 
                                 for (int y = pedinaY; y >= 0; y--)
                                 {
-                                    if (matrice[y, x] == Pedina.Vuoto)
+                                    if (matrice[x, y] == Pedina.Vuoto)
                                     {
                                         ultimoXvalido = x;
                                         ultimoYvalido = y;
@@ -219,7 +219,7 @@ namespace NeutrinusGame
                         {
                             for (int y = pedinaY; y >= 0; y--)
                             {
-                                if (matrice[y, pedinaX] == Pedina.Vuoto)
+                                if (matrice[pedinaX, y] == Pedina.Vuoto)
                                 {
                                     ultimoXvalido = pedinaX;
                                     ultimoYvalido = y;
@@ -239,7 +239,7 @@ namespace NeutrinusGame
 
                                 for (int y = pedinaY; y >= 0; y--)
                                 {
-                                    if (matrice[y, x] == Pedina.Vuoto)
+                                    if (matrice[x, y] == Pedina.Vuoto)
                                     {
                                         ultimoXvalido = x;
                                         ultimoYvalido = y;
@@ -258,7 +258,7 @@ namespace NeutrinusGame
                         {
                             for (int x = pedinaX; x < 5; x++)
                             {
-                                if (matrice[pedinaY, x] == Pedina.Vuoto)
+                                if (matrice[x, pedinaY] == Pedina.Vuoto)
                                 {
                                     ultimoXvalido = x;
                                     ultimoYvalido = pedinaY;
@@ -278,7 +278,7 @@ namespace NeutrinusGame
 
                                 for (int y = pedinaY; y < 5; y++)
                                 {
-                                    if (matrice[y, x] == Pedina.Vuoto)
+                                    if (matrice[x, y] == Pedina.Vuoto)
                                     {
                                         ultimoXvalido = x;
                                         ultimoYvalido = y;
@@ -297,7 +297,7 @@ namespace NeutrinusGame
                         {
                             for (int y = pedinaY; y < 5; y++)
                             {
-                                if (matrice[y, pedinaX] == Pedina.Vuoto)
+                                if (matrice[pedinaX, y] == Pedina.Vuoto)
                                 {
                                     ultimoXvalido = pedinaX;
                                     ultimoYvalido = y;
@@ -317,7 +317,7 @@ namespace NeutrinusGame
 
                                 for (int y = pedinaY; y < 5; y++)
                                 {
-                                    if (matrice[y, x] == Pedina.Vuoto)
+                                    if (matrice[x, y] == Pedina.Vuoto)
                                     {
                                         ultimoXvalido = x;
                                         ultimoYvalido = y;
@@ -336,7 +336,7 @@ namespace NeutrinusGame
                         {
                             for (int x = pedinaX; x >= 0; x--)
                             {
-                                if (matrice[pedinaY, x] == Pedina.Vuoto)
+                                if (matrice[x, pedinaY] == Pedina.Vuoto)
                                 {
                                     ultimoXvalido = x;
                                     ultimoYvalido = pedinaY;
@@ -433,39 +433,34 @@ namespace NeutrinusGame
                     {
                         case Movimento.SinistraSu:
                             {
-                                bool cicloInterrotto = false;
 
-                                for (int x = pedinaX; x >= 0; x--)
+                                int y = pedinaY - 1;
+                                for (int x = pedinaX - 1; x >= 0; x--)
                                 {
-                                    if (cicloInterrotto)
+
+                                    if (matrice[x, y] == Pedina.Vuoto && x >= 0 && y >= 0)
+                                    {
+                                        ultimoXvalido = x;
+                                        ultimoYvalido = y;
+                                    }
+                                    else
                                         break;
 
-                                    for (int y = pedinaY; y >= 0; y--)
-                                    {
-                                        if (matrice[y, x] == Pedina.Vuoto)
-                                        {
-                                            ultimoXvalido = x;
-                                            ultimoYvalido = y;
-                                        }
-                                        else
-                                        {
-                                            cicloInterrotto = true;
-                                            break;
-                                        }
-                                    }
+                                    y--;
+
                                 }
 
-                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2, ultimoYvalido * 2));
+                                coordinatePossibili.Add(new Coordinata(ultimoXvalido*2+1, ultimoYvalido*2+1));
 
                                 break;
                             }
                         case Movimento.Su:
                             {
-                                bool cicloInterrotto = false;
 
-                                for (int y = pedinaY; y >= 0; y--)
+
+                                for (int y = pedinaY - 1; y >= 0; y--)
                                 {
-                                    if (matrice[y, pedinaX] == Pedina.Vuoto)
+                                    if (matrice[pedinaX, y] == Pedina.Vuoto)
                                     {
                                         ultimoXvalido = pedinaX;
                                         ultimoYvalido = y;
@@ -474,45 +469,40 @@ namespace NeutrinusGame
                                         break;
                                 }
 
-                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2, ultimoYvalido * 2));
+                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2 + 1, ultimoYvalido * 2 + 1));
 
                                 break;
                             }
                         case Movimento.DestraSu:
                             {
-                                bool cicloInterrotto = false;
 
-                                for (int x = pedinaX; x < 5; x++)
+
+                                int y = pedinaY - 1;
+                                for (int x = pedinaX + 1; x < 5; x++)
                                 {
-                                    if (cicloInterrotto)
+                                    if (matrice[x, y] == Pedina.Vuoto && x < 5 && y >= 0)
+                                    {
+                                        ultimoXvalido = x;
+                                        ultimoYvalido = y;
+                                    }
+                                    else
                                         break;
 
-                                    for (int y = pedinaY; y >= 0; y--)
-                                    {
-                                        if (matrice[y, x] == Pedina.Vuoto)
-                                        {
-                                            ultimoXvalido = x;
-                                            ultimoYvalido = y;
-                                        }
-                                        else
-                                        {
-                                            cicloInterrotto = true;
-                                            break;
-                                        }
-                                    }
+                                    y--;
+
                                 }
 
-                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2, ultimoYvalido * 2));
+                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2 + 1, ultimoYvalido * 2 + 1));
 
                                 break;
                             }
                         case Movimento.Destra:
                             {
-                                bool cicloInterrotto = false;
 
-                                for (int x = pedinaX; x < 5; x++)
+
+                                for (int x = pedinaX + 1; x < 5; x++)
                                 {
-                                    if (matrice[pedinaY, x] == Pedina.Vuoto)
+                                    if (matrice[x, pedinaY] == Pedina.Vuoto)
                                     {
                                         ultimoXvalido = x;
                                         ultimoYvalido = pedinaY;
@@ -521,45 +511,42 @@ namespace NeutrinusGame
                                         break;
                                 }
 
-                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2, ultimoYvalido * 2));
+                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2 + 1, ultimoYvalido * 2 + 1));
 
                                 break;
                             }
                         case Movimento.DestraGiu:
                             {
-                                bool cicloInterrotto = false;
 
-                                for (int x = pedinaX; x < 5; x++)
+                                int y = pedinaY + 1;
+                                for (int x = pedinaX + 1; x < 5; x++)
                                 {
-                                    if (cicloInterrotto)
+
+
+                                    if (matrice[x, y] == Pedina.Vuoto && x < 5 && y < 5)
+                                    {
+                                        ultimoXvalido = x;
+                                        ultimoYvalido = y;
+                                    }
+                                    else
                                         break;
 
-                                    for (int y = pedinaY; y < 5; y++)
-                                    {
-                                        if (matrice[y, x] == Pedina.Vuoto)
-                                        {
-                                            ultimoXvalido = x;
-                                            ultimoYvalido = y;
-                                        }
-                                        else
-                                        {
-                                            cicloInterrotto = true;
-                                            break;
-                                        }
-                                    }
+                                    y++;
+
+
                                 }
 
-                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2, ultimoYvalido * 2));
+                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2 + 1, ultimoYvalido * 2 + 1));
 
                                 break;
                             }
                         case Movimento.Giu:
                             {
-                                bool cicloInterrotto = false;
 
-                                for (int y = pedinaY; y < 5; y++)
+
+                                for (int y = pedinaY + 1; y < 5; y++)
                                 {
-                                    if (matrice[y, pedinaX] == Pedina.Vuoto)
+                                    if (matrice[pedinaX, y] == Pedina.Vuoto)
                                     {
                                         ultimoXvalido = pedinaX;
                                         ultimoYvalido = y;
@@ -568,45 +555,41 @@ namespace NeutrinusGame
                                         break;
                                 }
 
-                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2, ultimoYvalido * 2));
+                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2 + 1, ultimoYvalido * 2 + 1));
 
                                 break;
                             }
                         case Movimento.SinistraGiu:
                             {
-                                bool cicloInterrotto = false;
 
-                                for (int x = pedinaX; x >= 0; x--)
+
+                                int y = pedinaY + 1;
+                                for (int x = pedinaX - 1; x >= 0; x--)
                                 {
-                                    if (cicloInterrotto)
-                                        break;
 
-                                    for (int y = pedinaY; y < 5; y++)
+                                    if (matrice[x, y] == Pedina.Vuoto && x >= 0 && y < 5)
                                     {
-                                        if (matrice[y, x] == Pedina.Vuoto)
-                                        {
-                                            ultimoXvalido = x;
-                                            ultimoYvalido = y;
-                                        }
-                                        else
-                                        {
-                                            cicloInterrotto = true;
-                                            break;
-                                        }
+                                        ultimoXvalido = x;
+                                        ultimoYvalido = y;
                                     }
+                                    else
+                                        break;
+                                    y++;
+
+
+
                                 }
 
-                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2, ultimoYvalido * 2));
+                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2 + 1, ultimoYvalido * 2 + 1));
 
                                 break;
                             }
                         case Movimento.Sinistra:
                             {
-                                bool cicloInterrotto = false;
 
-                                for (int x = pedinaX; x >= 0; x--)
+                                for (int x = pedinaX - 1; x >= 0; x--)
                                 {
-                                    if (matrice[pedinaY, x] == Pedina.Vuoto)
+                                    if (matrice[x, pedinaY] == Pedina.Vuoto)
                                     {
                                         ultimoXvalido = x;
                                         ultimoYvalido = pedinaY;
@@ -615,7 +598,7 @@ namespace NeutrinusGame
                                         break;
                                 }
 
-                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2, ultimoYvalido * 2));
+                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2 + 1, ultimoYvalido * 2 + 1));
 
                                 break;
                             }
