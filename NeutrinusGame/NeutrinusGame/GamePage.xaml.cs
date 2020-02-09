@@ -19,6 +19,8 @@ namespace NeutrinusGame
 
         Giocatore giocatore = Giocatore.Nessuno;
 
+        Color possibleMoveColor = Color.Coral;
+
         public GamePage()
         {
             InitializeComponent();
@@ -188,7 +190,7 @@ namespace NeutrinusGame
 
                 if(boxView != null)
                 {
-                    boxView.BackgroundColor = Color.Chocolate;
+                    boxView.BackgroundColor = possibleMoveColor;
                 }
             }
         }
@@ -197,7 +199,8 @@ namespace NeutrinusGame
         {
             foreach (BoxView view in GameGrid.Children)
             {
-                view.BackgroundColor = Color.Transparent;
+                if(view.BackgroundColor == possibleMoveColor)
+                    view.BackgroundColor = Color.Transparent;
             }
         }
 
@@ -210,8 +213,8 @@ namespace NeutrinusGame
 
             image.TranslateTo(puntoFinale.X, puntoFinale.Y, length, Easing.SinOut);
 
-            image.TableRow = row;
-            image.TableColumn = column;
+            image.TableRow = row / 2;
+            image.TableColumn = column / 2;
         }
 
         Point CalcNewPosition(BoxView sender, Image pedina)

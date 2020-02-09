@@ -13,7 +13,7 @@
         <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
             <StackLayout  Margin="20">
 
-                <Label Text="Neustrinus" TextColor="#2196F3" FontSize="Title" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" Margin="100"/>
+                <Label Text="Neutrinus" TextColor="#2196F3" FontSize="Title" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" Margin="100"/>
 
                 <Button x:Name="ciao" Text="New game" VerticalOptions="Center"  HorizontalOptions="CenterAndExpand" Clicked="btn_newGame"/>
                 <Button Text="Settings" VerticalOptions="Center"  HorizontalOptions="CenterAndExpand" Clicked="btn_settings"/>
