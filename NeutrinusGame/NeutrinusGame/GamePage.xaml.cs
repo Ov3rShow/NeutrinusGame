@@ -16,8 +16,9 @@ namespace NeutrinusGame
     {
         List<CustomImage> whitePawns, blackPawns;
         CustomImage neutrinus;
+        CustomImage lastImageTouched = null;
 
-        Giocatore giocatore = Giocatore.Nessuno;
+        Giocatore player = Giocatore.Nessuno;
 
         Color possibleMoveColor = Color.Coral;
 
@@ -29,7 +30,8 @@ namespace NeutrinusGame
             nomePedinaBianca = nomeBianco;
             nomePerdinaNera = nomeNero;
             FindFirstPlayer();
-           
+
+            GameGrid.RowSpacing = 0;
         }
 
         protected override bool OnBackButtonPressed()
@@ -52,14 +54,14 @@ namespace NeutrinusGame
 
         void FindFirstPlayer()
         {
-            giocatore = Engine.GetInstance().GetPrimoGiocatore();
+            player = Engine.GetInstance().GetPrimoGiocatore();
 
             ShowPlayerTurn();
         }
 
         void ShowPlayerTurn()
         {
-            if (giocatore.Equals(Giocatore.GiocatoreBianco))
+            if (player.Equals(Giocatore.GiocatoreBianco))
             {
                 LabelGiocatoreBianco.ScaleTo(1.5, 250, Easing.SinOut);
                 LabelGiocatoreBianco.Text= nomePedinaBianca + " tocca a te!";
@@ -67,7 +69,7 @@ namespace NeutrinusGame
                 LabelGiocatoreNero.Text = nomePerdinaNera;
             }
                 
-            else if (giocatore.Equals(Giocatore.GiocatoreNero))
+            else if (player.Equals(Giocatore.GiocatoreNero))
             {
                 LabelGiocatoreNero.ScaleTo(1.5, 250, Easing.SinOut);
                 LabelGiocatoreNero.Text= nomePerdinaNera +  " tocca a te!";
@@ -157,7 +159,19 @@ namespace NeutrinusGame
 
         private void onTap(View arg1, object arg2)
         {
-           
+            if(lastImageTouched != (CustomImage)arg1)
+            {
+                if (!checkIfPawnIsCorrectForTheTurn((CustomImage)arg1))
+                {
+                    //shakeAnimation(arg1);
+                    return;
+                }
+                if(lastImageTouched != null)
+                    lastImageTouched.ScaleTo(1, 50, Easing.SinOut);
+
+                lastImageTouched = (CustomImage)arg1;
+                lastImageTouched.ScaleTo(1.2, 50, Easing.SinOut);
+
                 int x = ((CustomImage)arg1).TableColumn;
                 int y = ((CustomImage)arg1).TableRow;
                 List<Movimento> movimenti = Engine.GetInstance().MovimentiPossibili(x, y);
@@ -165,12 +179,18 @@ namespace NeutrinusGame
 
                 ClearAllCellsTint();
                 TintCells(coordinate);
-            
+            }
+            else
+            {
+                lastImageTouched.ScaleTo(1, 50, Easing.SinOut);
+                lastImageTouched = null;
+                ClearAllCellsTint();
+            }
         }
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            
+            //lol probabilmente questo si può togliere (anche dal layout) :)
         }
 
         void TintCells(List<Coordinata> coordinates)
@@ -219,6 +239,37 @@ namespace NeutrinusGame
             int coordinataYFinale = Convert.ToInt32(centroYcella - (pedina.Height / 2));
 
             return new Point(coordinataXFinale, coordinataYFinale);
+        }
+
+        bool checkIfPawnIsCorrectForTheTurn(CustomImage pawn)
+        {
+            switch(player)
+            {
+                case Giocatore.GiocatoreBianco:
+                    {
+                        if (whitePawns.Contains(pawn))
+                            return true;
+
+                        break;
+                    }
+                case Giocatore.GiocatoreNero:
+                    {
+                        if (blackPawns.Contains(pawn))
+                            return true;
+                        
+                        break;
+                    }
+                default:
+                    { break; }
+            }
+
+            return false;
+        }
+
+        async void shakeAnimation(View view)
+        {
+            //non so perchè ma sposta la pedina a cazzo in giro
+            //https://github.com/trailheadtechnology/FancyAnimations/blob/master/FacncyAnimations/FacncyAnimations/ShakePage.xaml.cs
         }
     }
 }

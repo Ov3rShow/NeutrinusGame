@@ -18,15 +18,15 @@
                     <Grid x:Name="GameGrid" AbsoluteLayout.LayoutBounds="1, 1, 1, 1" AbsoluteLayout.LayoutFlags="All" RowSpacing="5" ColumnSpacing="0" Margin="5" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="3" />
-                        <RowDefinition Height="75"/>
+                        <RowDefinition Height="75" x:Name="Row1"/>
                         <RowDefinition Height="3"/>
-                        <RowDefinition Height="75"/>
+                        <RowDefinition Height="75" x:Name="Row2"/>
                         <RowDefinition Height="3"/>
-                        <RowDefinition Height="75"/>
+                        <RowDefinition Height="75" x:Name="Row3"/>
                         <RowDefinition Height="3"/>
-                        <RowDefinition Height="75"/>
+                        <RowDefinition Height="75" x:Name="Row4"/>
                         <RowDefinition Height="3"/>
-                        <RowDefinition Height="75"/>
+                        <RowDefinition Height="75" x:Name="Row5"/>
                         <RowDefinition Height="3"/>
                     </Grid.RowDefinitions>
 
@@ -176,7 +176,7 @@
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
                             </BoxView.GestureRecognizers>
                         </BoxView>
-                        <BoxView x:Name="Cella44" BackgroundColor="Transparent" Grid.Column="9" Grid.Row="9" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <BoxView x:Name="Cella44" BackgroundColor="Transparent" Grid.Column="9" Grid.Row="9" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="0">
                             <BoxView.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
                             </BoxView.GestureRecognizers>
