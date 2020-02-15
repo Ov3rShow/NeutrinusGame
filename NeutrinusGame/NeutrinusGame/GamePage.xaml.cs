@@ -190,7 +190,15 @@ namespace NeutrinusGame
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            //lol probabilmente questo si può togliere (anche dal layout) :)
+            BoxView boxViewClicked = (BoxView)sender;
+            if(boxViewClicked.BackgroundColor == possibleMoveColor)
+            {
+                ClearAllCellsTint();
+                MoveImage(sender, lastImageTouched, 1000);
+                lastImageTouched.ScaleTo(1, 50, Easing.SinOut);
+            }
+           
+           
         }
 
         void TintCells(List<Coordinata> coordinates)

@@ -46,7 +46,7 @@
 
 
 
-                    <BoxView x:Name="Cella00" BackgroundColor="Transparent" Grid.Column="1" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <BoxView x:Name="Cella00"  BackgroundColor="Transparent" Grid.Column="1" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <BoxView.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
                             </BoxView.GestureRecognizers>
