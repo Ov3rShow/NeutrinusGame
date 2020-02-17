@@ -295,7 +295,7 @@ namespace NeutrinusGame
                         }
                     case Movimento.Giu:
                         {
-                            for (int y = pedinaY; y < 5; y++)
+                            for (int y = pedinaY+1; y < 5; y++)
                             {
                                 if (matrice[pedinaX, y] == Pedina.Vuoto)
                                 {

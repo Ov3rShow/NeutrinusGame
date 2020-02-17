@@ -56,15 +56,15 @@ namespace NeutrinusGame
         {
             player = Engine.GetInstance().GetPrimoGiocatore();
 
-            ShowPlayerTurn();
+            ShowPlayerTurn("Pedina");
         }
 
-        void ShowPlayerTurn()
+        void ShowPlayerTurn(String msg)
         {
             if (player.Equals(Giocatore.GiocatoreBianco))
             {
                 LabelGiocatoreBianco.ScaleTo(1.5, 250, Easing.SinOut);
-                LabelGiocatoreBianco.Text= nomePedinaBianca + " tocca a te!";
+                LabelGiocatoreBianco.Text= nomePedinaBianca + " tocca a te!\n" + msg;
                 LabelGiocatoreNero.ScaleTo(1, 250, Easing.SinOut);
                 LabelGiocatoreNero.Text = nomePerdinaNera;
             }
@@ -72,7 +72,7 @@ namespace NeutrinusGame
             else if (player.Equals(Giocatore.GiocatoreNero))
             {
                 LabelGiocatoreNero.ScaleTo(1.5, 250, Easing.SinOut);
-                LabelGiocatoreNero.Text= nomePerdinaNera +  " tocca a te!";
+                LabelGiocatoreNero.Text= nomePerdinaNera + " tocca a te!\n" + msg;
                 LabelGiocatoreBianco.ScaleTo(1, 250, Easing.SinOut);
                 LabelGiocatoreBianco.Text = nomePedinaBianca;
             }
@@ -194,8 +194,21 @@ namespace NeutrinusGame
             if(boxViewClicked.BackgroundColor == possibleMoveColor)
             {
                 ClearAllCellsTint();
+                /** Funziona il turno però non so come capire il movimento che fa e su "EffettuaTurno" è sbagliato il controllo della pedina, controlla
+                  la posizione in cui c'è la pedina corrente e va sempre in errore (fixed su giù y+1)
+                RisultatoTurno risultatoTurno = Engine.GetInstance().EffettuaTurno(ref player,lastImageTouched.TableColumn,lastImageTouched.TableRow, Movimento.Giu);
                 MoveImage(sender, lastImageTouched, 1000);
                 lastImageTouched.ScaleTo(1, 50, Easing.SinOut);
+
+                if (risultatoTurno == RisultatoTurno.ProssimoTurnoPedina)
+                {
+                    ShowPlayerTurn("Pedina");
+
+                }else if(risultatoTurno == RisultatoTurno.ProssimoTurnoNeutrinus)
+                {
+                    ShowPlayerTurn("Neutrinus");
+                } **/
+
             }
            
            
