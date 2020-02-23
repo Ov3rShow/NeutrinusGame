@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -23,6 +24,8 @@ namespace NeutrinusGame
         Color possibleMoveColor = Color.Coral;
 
         string nomePedinaBianca, nomePerdinaNera;
+
+        Pedina whatToMoveNext = Pedina.NeraOBianca;
 
         public GamePage(string nomeBianco, string nomeNero)
         {
@@ -56,11 +59,18 @@ namespace NeutrinusGame
         {
             player = Engine.GetInstance().GetPrimoGiocatore();
 
-            ShowPlayerTurn("Pedina");
+            ShowPlayerTurn(whatToMoveNext);
         }
 
-        void ShowPlayerTurn(String msg)
+        void ShowPlayerTurn(Pedina type)
         {
+            String msg = "";
+
+            if (type == Pedina.Neutrinus)
+                msg = "Neutrinus";
+            else if (type == Pedina.NeraOBianca)
+                msg = "Pedina";
+
             if (player.Equals(Giocatore.GiocatoreBianco))
             {
                 LabelGiocatoreBianco.ScaleTo(1.5, 250, Easing.SinOut);
@@ -194,6 +204,7 @@ namespace NeutrinusGame
             if(boxViewClicked.BackgroundColor == possibleMoveColor)
             {
                 ClearAllCellsTint();
+                //se risolo si può togliere il commento
                 /** Funziona il turno però non so come capire il movimento che fa e su "EffettuaTurno" è sbagliato il controllo della pedina, controlla
                   la posizione in cui c'è la pedina corrente e va sempre in errore (fixed su giù y+1)
                 RisultatoTurno risultatoTurno = Engine.GetInstance().EffettuaTurno(ref player,lastImageTouched.TableColumn,lastImageTouched.TableRow, Movimento.Giu);
@@ -208,6 +219,40 @@ namespace NeutrinusGame
                 {
                     ShowPlayerTurn("Neutrinus");
                 } **/
+
+                if(lastImageTouched != null)
+                {
+                    int destinationRow = (int)boxViewClicked.GetValue(Grid.RowProperty);
+                    int destinationColumn = (int)boxViewClicked.GetValue(Grid.ColumnProperty);
+
+                    RisultatoTurno risultatoTurno = Engine.GetInstance().EffettuaTurno(ref player, lastImageTouched.TableColumn, lastImageTouched.TableRow, destinationColumn, destinationRow);
+
+                    MoveImage(boxViewClicked, lastImageTouched, 300);
+                    lastImageTouched.ScaleTo(1);
+
+                    if (risultatoTurno == RisultatoTurno.ProssimoTurnoNeutrinus)
+                    {
+                        whatToMoveNext = Pedina.Neutrinus;
+                        ShowPlayerTurn(whatToMoveNext);
+                        whatToMoveNext = Pedina.Neutrinus;
+                    }
+                    else if(risultatoTurno == RisultatoTurno.ProssimoTurnoPedina)
+                    {
+                        whatToMoveNext = Pedina.NeraOBianca;
+                        ShowPlayerTurn(whatToMoveNext);
+                        whatToMoveNext = Pedina.NeraOBianca;
+                    }
+                    else if(risultatoTurno == RisultatoTurno.FineGiocoVinceBianco)
+                    {
+                        //vince il bianco
+                    }
+                    else if(risultatoTurno == RisultatoTurno.FineGiocoVinceNero)
+                    {
+                        //vince il nero
+                    }
+
+                    lastImageTouched = null;
+                }
 
             }
            
@@ -264,26 +309,34 @@ namespace NeutrinusGame
 
         bool checkIfPawnIsCorrectForTheTurn(CustomImage pawn)
         {
-            switch(player)
+            if(whatToMoveNext == Pedina.Neutrinus)
             {
-                case Giocatore.GiocatoreBianco:
-                    {
-                        if (whitePawns.Contains(pawn))
-                            return true;
-
-                        break;
-                    }
-                case Giocatore.GiocatoreNero:
-                    {
-                        if (blackPawns.Contains(pawn))
-                            return true;
-                        
-                        break;
-                    }
-                default:
-                    { break; }
+                if (pawn == neutrinus)
+                    return true;
             }
+            else
+            {
+                switch (player)
+                {
+                    case Giocatore.GiocatoreBianco:
+                        {
+                            if (whitePawns.Contains(pawn))
+                                return true;
 
+                            break;
+                        }
+                    case Giocatore.GiocatoreNero:
+                        {
+                            if (blackPawns.Contains(pawn))
+                                return true;
+
+                            break;
+                        }
+                    default:
+                        { break; }
+                }
+            }
+            
             return false;
         }
 

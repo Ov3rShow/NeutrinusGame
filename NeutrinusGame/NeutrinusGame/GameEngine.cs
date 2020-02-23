@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace NeutrinusGame
@@ -8,7 +9,9 @@ namespace NeutrinusGame
     {
         public enum Pedina
         {
-            Bianca, Nera, Neutrinus, Vuoto
+            /*l'elemento NeraOBianca serve solo a livello di codice per capire se il giocatore dovrà spostare una pedina normale o 
+             il neutrinus, non deve essere mai instanziata nella griglia di gioco del codice qui sotto*/
+            Bianca, Nera, Neutrinus, Vuoto, NeraOBianca
         }
 
         public enum Movimento
@@ -295,7 +298,7 @@ namespace NeutrinusGame
                         }
                     case Movimento.Giu:
                         {
-                            for (int y = pedinaY+1; y < 5; y++)
+                            for (int y = pedinaY + 1; y < 5; y++)
                             {
                                 if (matrice[pedinaX, y] == Pedina.Vuoto)
                                 {
@@ -394,6 +397,56 @@ namespace NeutrinusGame
                     return RisultatoTurno.Errore;
             }
 
+            public RisultatoTurno EffettuaTurno(ref Giocatore giocatore, int pedinaX, int pedinaY, int pedinaEndX, int pedinaEndY)
+            {
+
+                /*Effettua lo spostamento della pedina all'interno della matrice. La pedina viene spostata finchè non incontra
+                 un'altra pedina o finchè non viene raggiunto il bordo della pedina. Il risultato restituito indica se il gioco prosegue
+                 con un altro turno o se la partita è terminata.*/
+
+                Pedina pedinaSelezionata = matrice[pedinaX, pedinaY];
+
+                //int convertedPedinaX = (int)(pedinaX / 2);
+                //int convertedPedinaY = (int)(pedinaY / 2);
+                int convertedEndPedinaX = (int)(pedinaEndX / 2);
+                int convertedEndPedinaY = (int)(pedinaEndY / 2);
+
+                matrice[convertedEndPedinaX, convertedEndPedinaY] = matrice[pedinaX, pedinaY];
+                matrice[pedinaX, pedinaY] = Pedina.Vuoto;
+                
+                turniGiocati++;
+
+                ultimoGiocatore = giocatore;
+                int neutrinusX, neutrinusY;
+
+                FindNeutrinusCoordinates(out neutrinusX, out neutrinusY);
+
+                if (neutrinusX != -1 && neutrinusY != -1)
+                {
+                    if (neutrinusX == 0)
+                        return RisultatoTurno.FineGiocoVinceNero;
+                    else if (neutrinusY == 4)
+                        return RisultatoTurno.FineGiocoVinceBianco;
+                    else
+                    {
+                        if ((pedinaSelezionata == Pedina.Nera || pedinaSelezionata == Pedina.Bianca) || turniGiocati <= 1)
+                        {
+                            /*Se la partita non è terminata e la pedina mossa è bianca o nera
+                             * viene valorizzato il giocatore con il giocatore che dovrà fare la prossima mossa e 
+                             * viene specificato che dovrà muovere il neutrinus*/
+                            giocatore = ProssimoGiocatore();
+                            return RisultatoTurno.ProssimoTurnoNeutrinus;
+                        }
+                        else
+                            /*Se la partita non è terminata e la pedina mossa è il neutrinus, il giocatore rimane lo stesso e 
+                             * viene specificato che come prossima mossa deve muvoere una pedina normale*/
+                            return RisultatoTurno.ProssimoTurnoPedina;
+                    }
+                }
+                else
+                    return RisultatoTurno.Errore;
+            }
+
             public Giocatore GetPrimoGiocatore()
             {
                 return ProssimoGiocatore();
@@ -438,7 +491,7 @@ namespace NeutrinusGame
                                 for (int x = pedinaX - 1; x >= 0; x--)
                                 {
 
-                                    if (matrice[x, y] == Pedina.Vuoto && x >= 0 && y >= 0)
+                                    if ((x >= 0 && y >= 0) && matrice[x, y] == Pedina.Vuoto)
                                     {
                                         ultimoXvalido = x;
                                         ultimoYvalido = y;
@@ -450,7 +503,7 @@ namespace NeutrinusGame
 
                                 }
 
-                                coordinatePossibili.Add(new Coordinata(ultimoXvalido*2+1, ultimoYvalido*2+1));
+                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2 + 1, ultimoYvalido * 2 + 1));
 
                                 break;
                             }
@@ -480,7 +533,7 @@ namespace NeutrinusGame
                                 int y = pedinaY - 1;
                                 for (int x = pedinaX + 1; x < 5; x++)
                                 {
-                                    if (matrice[x, y] == Pedina.Vuoto && x < 5 && y >= 0)
+                                    if ((x < 5 && y >= 0) && matrice[x, y] == Pedina.Vuoto)
                                     {
                                         ultimoXvalido = x;
                                         ultimoYvalido = y;
@@ -523,7 +576,7 @@ namespace NeutrinusGame
                                 {
 
 
-                                    if (matrice[x, y] == Pedina.Vuoto && x < 5 && y < 5)
+                                    if ((x < 5 && y < 5) && matrice[x, y] == Pedina.Vuoto)
                                     {
                                         ultimoXvalido = x;
                                         ultimoYvalido = y;
@@ -567,7 +620,7 @@ namespace NeutrinusGame
                                 for (int x = pedinaX - 1; x >= 0; x--)
                                 {
 
-                                    if (matrice[x, y] == Pedina.Vuoto && x >= 0 && y < 5)
+                                    if ((x >= 0 && y < 5) && matrice[x, y] == Pedina.Vuoto)
                                     {
                                         ultimoXvalido = x;
                                         ultimoYvalido = y;
@@ -607,6 +660,29 @@ namespace NeutrinusGame
 
                 return coordinatePossibili;
             }
+
+            public void DebugPrintGrid()
+            {
+                for (int x = 0; x < NUM_COLUMNS; x++)
+                {
+                    String row = "";
+
+                    for (int y = 0; y < NUM_ROWS; y++)
+                    {
+                        if (matrice[y, x] == Pedina.Bianca)
+                            row += "B";
+                        else if (matrice[y, x] == Pedina.Nera)
+                            row += "N";
+                        if (matrice[y, x] == Pedina.Vuoto)
+                            row += "V";
+                        if (matrice[y, x] == Pedina.Neutrinus)
+                            row += "X";
+                    }
+
+                    Debug.Print(row);
+                }
+            }
+
         }
     }
 }
