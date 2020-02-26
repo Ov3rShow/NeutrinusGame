@@ -441,6 +441,7 @@ namespace NeutrinusGame
                             /*Se la partita non è terminata e la pedina mossa è il neutrinus, il giocatore rimane lo stesso e 
                              * viene specificato che come prossima mossa deve muvoere una pedina normale*/
                             return RisultatoTurno.ProssimoTurnoPedina;
+                       
                     }
                 }
                 else
@@ -503,7 +504,7 @@ namespace NeutrinusGame
 
                                 }
 
-                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2 + 1, ultimoYvalido * 2 + 1));
+                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2 + 2, ultimoYvalido * 2 + 2));
 
                                 break;
                             }
@@ -522,7 +523,7 @@ namespace NeutrinusGame
                                         break;
                                 }
 
-                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2 + 1, ultimoYvalido * 2 + 1));
+                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2 + 2, ultimoYvalido * 2 + 2));
 
                                 break;
                             }
@@ -545,7 +546,7 @@ namespace NeutrinusGame
 
                                 }
 
-                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2 + 1, ultimoYvalido * 2 + 1));
+                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2 + 2, ultimoYvalido * 2 + 2));
 
                                 break;
                             }
@@ -564,7 +565,7 @@ namespace NeutrinusGame
                                         break;
                                 }
 
-                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2 + 1, ultimoYvalido * 2 + 1));
+                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2 + 2, ultimoYvalido * 2 + 2));
 
                                 break;
                             }
@@ -589,7 +590,7 @@ namespace NeutrinusGame
 
                                 }
 
-                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2 + 1, ultimoYvalido * 2 + 1));
+                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2 + 2, ultimoYvalido * 2 + 2));
 
                                 break;
                             }
@@ -608,7 +609,7 @@ namespace NeutrinusGame
                                         break;
                                 }
 
-                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2 + 1, ultimoYvalido * 2 + 1));
+                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2 + 2, ultimoYvalido * 2 + 2));
 
                                 break;
                             }
@@ -633,7 +634,7 @@ namespace NeutrinusGame
 
                                 }
 
-                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2 + 1, ultimoYvalido * 2 + 1));
+                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2 + 2, ultimoYvalido * 2 + 2));
 
                                 break;
                             }
@@ -651,7 +652,7 @@ namespace NeutrinusGame
                                         break;
                                 }
 
-                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2 + 1, ultimoYvalido * 2 + 1));
+                                coordinatePossibili.Add(new Coordinata(ultimoXvalido * 2 + 2, ultimoYvalido * 2 + 2));
 
                                 break;
                             }
