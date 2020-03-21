@@ -178,8 +178,8 @@ namespace NeutrinusGame
                 lastImageTouched = (CustomImage)arg1;
                 lastImageTouched.ScaleTo(1.2, 50, Easing.SinOut);
 
-                int x = ((CustomImage)arg1).TableColumn;
-                int y = ((CustomImage)arg1).TableRow;
+                int x = ((CustomImage)arg1).TableColumn -1;
+                int y = ((CustomImage)arg1).TableRow - 1;
                 List<Movimento> movimenti = Engine.GetInstance().MovimentiPossibili(x, y);
                 List<Coordinata> coordinate = Engine.GetInstance().TrovaDestinazioni(movimenti, x, y);
 
@@ -218,10 +218,10 @@ namespace NeutrinusGame
 
                 if(lastImageTouched != null)
                 {
-                    int destinationRow = (int)boxViewClicked.GetValue(Grid.RowProperty);
-                    int destinationColumn = (int)boxViewClicked.GetValue(Grid.ColumnProperty);
+                    int destinationRow = (int)boxViewClicked.GetValue(Grid.RowProperty) -1;
+                    int destinationColumn = (int)boxViewClicked.GetValue(Grid.ColumnProperty)-1;
 
-                    RisultatoTurno risultatoTurno = Engine.GetInstance().EffettuaTurno(ref player, lastImageTouched.TableColumn, lastImageTouched.TableRow, destinationColumn, destinationRow);
+                    RisultatoTurno risultatoTurno = Engine.GetInstance().EffettuaTurno(ref player, lastImageTouched.TableColumn-1, lastImageTouched.TableRow-1, destinationColumn, destinationRow);
 
                     MoveImage(boxViewClicked, lastImageTouched, 300);
                     lastImageTouched.ScaleTo(1);
@@ -240,12 +240,20 @@ namespace NeutrinusGame
                     }
                     else if(risultatoTurno == RisultatoTurno.FineGiocoVinceBianco)
                     {
+                        LabelGiocatoreBianco.Text = "Hai vinto!";
+                        LabelGiocatoreBianco.ScaleTo(1.5, 250, Easing.SinOut);
+                        LabelGiocatoreNero.ScaleTo(1, 250, Easing.SinOut);
+                        LabelGiocatoreNero.Text = "Hai perso!";
                         await DisplayAlert("Fine gioco", "Vince bianco", "Chiudi");
                         GameEngine.Engine.GetInstance().resetGameEngine();
                         await Navigation.PopAsync();
                     }
                     else if(risultatoTurno == RisultatoTurno.FineGiocoVinceNero)
                     {
+                        LabelGiocatoreNero.Text = "Hai vinto!";
+                        LabelGiocatoreNero.ScaleTo(1.5, 250, Easing.SinOut);
+                        LabelGiocatoreBianco.ScaleTo(1, 250, Easing.SinOut);
+                        LabelGiocatoreBianco.Text = "Hai perso!";
                         await DisplayAlert("Fine gioco", "Vince nero", "Chiudi");
                         GameEngine.Engine.GetInstance().resetGameEngine();
                         await Navigation.PopAsync();
@@ -276,10 +284,16 @@ namespace NeutrinusGame
 
         void ClearAllCellsTint()
         {
-            foreach (BoxView view in GameGrid.Children)
+            foreach (var view in GameGrid.Children)
             {
-                if(view.BackgroundColor == possibleMoveColor)
-                    view.BackgroundColor = Color.Transparent;
+                if (view is BoxView)
+                {
+
+                    if (view.BackgroundColor == possibleMoveColor)
+                        view.BackgroundColor = Color.Transparent;
+                }
+
+                
             }
         }
 
