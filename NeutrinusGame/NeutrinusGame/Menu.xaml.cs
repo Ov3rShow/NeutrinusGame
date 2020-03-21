@@ -57,7 +57,7 @@ namespace NeutrinusGame
             NomeG2.Text = "";
             popupLoginView.IsVisible = false;
 
-            await Navigation.PushModalAsync(gamePage);
+            await Navigation.PushAsync(gamePage);
 
             gamePage.CreateWhitePawns();
             gamePage.PrepareWhitePawns();

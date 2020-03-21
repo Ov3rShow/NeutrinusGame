@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -198,7 +194,7 @@ namespace NeutrinusGame
             }
         }
 
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        async private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             BoxView boxViewClicked = (BoxView)sender;
             if(boxViewClicked.BackgroundColor == possibleMoveColor)
@@ -244,11 +240,15 @@ namespace NeutrinusGame
                     }
                     else if(risultatoTurno == RisultatoTurno.FineGiocoVinceBianco)
                     {
-                        //vince il bianco
+                        await DisplayAlert("Fine gioco", "Vince bianco", "Chiudi");
+                        GameEngine.Engine.GetInstance().resetGameEngine();
+                        await Navigation.PopAsync();
                     }
                     else if(risultatoTurno == RisultatoTurno.FineGiocoVinceNero)
                     {
-                        //vince il nero
+                        await DisplayAlert("Fine gioco", "Vince nero", "Chiudi");
+                        GameEngine.Engine.GetInstance().resetGameEngine();
+                        await Navigation.PopAsync();
                     }
 
                     lastImageTouched = null;

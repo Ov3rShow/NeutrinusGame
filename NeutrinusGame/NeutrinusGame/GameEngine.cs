@@ -69,6 +69,7 @@ namespace NeutrinusGame
                 /*Metodo chiamato quando viene giocata una nuova partita, prepara la griglia e i dati*/
                 gameEngine.PreparaGriglia();
                 ultimoGiocatore = Giocatore.Nessuno;
+                turniGiocati = 0;
             }
 
             private void PreparaGriglia()
@@ -423,10 +424,10 @@ namespace NeutrinusGame
 
                 if (neutrinusX != -1 && neutrinusY != -1)
                 {
-                    if (neutrinusX == 0)
-                        return RisultatoTurno.FineGiocoVinceNero;
-                    else if (neutrinusY == 4)
+                    if (neutrinusY == 0)
                         return RisultatoTurno.FineGiocoVinceBianco;
+                    else if (neutrinusY == 4)
+                        return RisultatoTurno.FineGiocoVinceNero;
                     else
                     {
                         if ((pedinaSelezionata == Pedina.Nera || pedinaSelezionata == Pedina.Bianca) || turniGiocati <= 1)
@@ -659,6 +660,11 @@ namespace NeutrinusGame
                 }
 
                 return coordinatePossibili;
+            }
+
+            public void resetGameEngine()
+            {
+                gameEngine = null;
             }
 
             public void DebugPrintGrid()
