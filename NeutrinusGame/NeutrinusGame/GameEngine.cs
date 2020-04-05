@@ -182,222 +182,6 @@ namespace NeutrinusGame
                 return prossimoGiocatore;
             }
 
-            public RisultatoTurno EffettuaTurno(ref Giocatore giocatore, int pedinaX, int pedinaY, Movimento movimento)
-            {
-
-                /*Effettua lo spostamento della pedina all'interno della matrice. La pedina viene spostata finchè non incontra
-                 un'altra pedina o finchè non viene raggiunto il bordo della pedina. Il risultato restituito indica se il gioco prosegue
-                 con un altro turno o se la partita è terminata.*/
-
-                bool cicloInterrotto = false;
-                int ultimoXvalido = -1, ultimoYvalido = -1;
-                Pedina pedinaSelezionata = matrice[pedinaX, pedinaY];
-
-                switch (movimento)
-                {
-                    case Movimento.SinistraSu:
-                        {
-                            for (int x = pedinaX; x >= 0; x--)
-                            {
-                                if (cicloInterrotto)
-                                    break;
-
-                                for (int y = pedinaY; y >= 0; y--)
-                                {
-                                    if (matrice[x, y] == Pedina.Vuoto)
-                                    {
-                                        ultimoXvalido = x;
-                                        ultimoYvalido = y;
-                                    }
-                                    else
-                                    {
-                                        cicloInterrotto = true;
-                                        break;
-                                    }
-                                }
-                            }
-
-                            break;
-                        }
-                    case Movimento.Su:
-                        {
-                            for (int y = pedinaY; y >= 0; y--)
-                            {
-                                if (matrice[pedinaX, y] == Pedina.Vuoto)
-                                {
-                                    ultimoXvalido = pedinaX;
-                                    ultimoYvalido = y;
-                                }
-                                else
-                                    break;
-                            }
-
-                            break;
-                        }
-                    case Movimento.DestraSu:
-                        {
-                            for (int x = pedinaX; x < 5; x++)
-                            {
-                                if (cicloInterrotto)
-                                    break;
-
-                                for (int y = pedinaY; y >= 0; y--)
-                                {
-                                    if (matrice[x, y] == Pedina.Vuoto)
-                                    {
-                                        ultimoXvalido = x;
-                                        ultimoYvalido = y;
-                                    }
-                                    else
-                                    {
-                                        cicloInterrotto = true;
-                                        break;
-                                    }
-                                }
-                            }
-
-                            break;
-                        }
-                    case Movimento.Destra:
-                        {
-                            for (int x = pedinaX; x < 5; x++)
-                            {
-                                if (matrice[x, pedinaY] == Pedina.Vuoto)
-                                {
-                                    ultimoXvalido = x;
-                                    ultimoYvalido = pedinaY;
-                                }
-                                else
-                                    break;
-                            }
-
-                            break;
-                        }
-                    case Movimento.DestraGiu:
-                        {
-                            for (int x = pedinaX; x < 5; x++)
-                            {
-                                if (cicloInterrotto)
-                                    break;
-
-                                for (int y = pedinaY; y < 5; y++)
-                                {
-                                    if (matrice[x, y] == Pedina.Vuoto)
-                                    {
-                                        ultimoXvalido = x;
-                                        ultimoYvalido = y;
-                                    }
-                                    else
-                                    {
-                                        cicloInterrotto = true;
-                                        break;
-                                    }
-                                }
-                            }
-
-                            break;
-                        }
-                    case Movimento.Giu:
-                        {
-                            for (int y = pedinaY + 1; y < 5; y++)
-                            {
-                                if (matrice[pedinaX, y] == Pedina.Vuoto)
-                                {
-                                    ultimoXvalido = pedinaX;
-                                    ultimoYvalido = y;
-                                }
-                                else
-                                    break;
-                            }
-
-                            break;
-                        }
-                    case Movimento.SinistraGiu:
-                        {
-                            for (int x = pedinaX; x >= 0; x--)
-                            {
-                                if (cicloInterrotto)
-                                    break;
-
-                                for (int y = pedinaY; y < 5; y++)
-                                {
-                                    if (matrice[x, y] == Pedina.Vuoto)
-                                    {
-                                        ultimoXvalido = x;
-                                        ultimoYvalido = y;
-                                    }
-                                    else
-                                    {
-                                        cicloInterrotto = true;
-                                        break;
-                                    }
-                                }
-                            }
-
-                            break;
-                        }
-                    case Movimento.Sinistra:
-                        {
-                            for (int x = pedinaX; x >= 0; x--)
-                            {
-                                if (matrice[x, pedinaY] == Pedina.Vuoto)
-                                {
-                                    ultimoXvalido = x;
-                                    ultimoYvalido = pedinaY;
-                                }
-                                else
-                                    break;
-                            }
-
-                            break;
-                        }
-                }
-
-                turniGiocati++;
-
-                //Se viene trovata una coordinata valida per spostare la pedina, effettuo lo spostamento
-                if (ultimoXvalido != -1 && ultimoYvalido != -1)
-                {
-                    ultimoGiocatore = giocatore;
-
-                    //Spostamento della pedina
-                    Pedina tempPedina = matrice[pedinaX, pedinaY];
-                    matrice[pedinaX, pedinaY] = Pedina.Vuoto;
-                    matrice[ultimoXvalido, ultimoYvalido] = tempPedina;
-
-                    //Trovo le coordinate del neutrinus per identificare se la partita è stata vinta con l'ultima mossa eseguita
-                    //TODO: gestire anche gli altri casi di vittoria
-                    int neutrinusX, neutrinusY;
-                    FindNeutrinusCoordinates(out neutrinusX, out neutrinusY);
-                    if (neutrinusX != -1 && neutrinusY != -1)
-                    {
-                        if (neutrinusX == 0)
-                            return RisultatoTurno.FineGiocoVinceNero;
-                        else if (neutrinusY == 4)
-                            return RisultatoTurno.FineGiocoVinceBianco;
-                        else
-                        {
-                            if ((pedinaSelezionata == Pedina.Nera || pedinaSelezionata == Pedina.Bianca) || turniGiocati <= 2)
-                            {
-                                /*Se la partita non è terminata e la pedina mossa è bianca o nera
-                                 * viene valorizzato il giocatore con il giocatore che dovrà fare la prossima mossa e 
-                                 * viene specificato che dovrà muovere il neutrinus*/
-                                giocatore = ProssimoGiocatore();
-                                return RisultatoTurno.ProssimoTurnoNeutrinus;
-                            }
-                            else
-                                /*Se la partita non è terminata e la pedina mossa è il neutrinus, il giocatore rimane lo stesso e 
-                                 * viene specificato che come prossima mossa deve muvoere una pedina normale*/
-                                return RisultatoTurno.ProssimoTurnoPedina;
-                        }
-                    }
-                    else
-                        return RisultatoTurno.Errore;
-                }
-                else
-                    return RisultatoTurno.Errore;
-            }
-
             public RisultatoTurno EffettuaTurno(ref Giocatore giocatore, int pedinaX, int pedinaY, int pedinaEndX, int pedinaEndY)
             {
 
@@ -428,6 +212,13 @@ namespace NeutrinusGame
                         return RisultatoTurno.FineGiocoVinceBianco;
                     else if (neutrinusY == 4)
                         return RisultatoTurno.FineGiocoVinceNero;
+                    else if(IsNeutrinusCaged())
+                    {
+                        if (giocatore == Giocatore.GiocatoreBianco)
+                            return RisultatoTurno.FineGiocoVinceBianco;
+                        else
+                            return RisultatoTurno.FineGiocoVinceNero;
+                    }
                     else
                     {
                         if ((pedinaSelezionata == Pedina.Nera || pedinaSelezionata == Pedina.Bianca) || turniGiocati <= 1)
@@ -661,6 +452,20 @@ namespace NeutrinusGame
                 }
 
                 return coordinatePossibili;
+            }
+
+            public bool IsNeutrinusCaged()
+            {
+                bool caged = false;
+
+                int x, y;
+
+                FindNeutrinusCoordinates(out x, out y);
+
+                if (MovimentiPossibili(x, y).Count == 0)
+                    caged = true;
+
+                return caged;
             }
 
             public void resetGameEngine()

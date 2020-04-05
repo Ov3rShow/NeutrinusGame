@@ -240,20 +240,12 @@ namespace NeutrinusGame
                     }
                     else if(risultatoTurno == RisultatoTurno.FineGiocoVinceBianco)
                     {
-                        LabelGiocatoreBianco.Text = "Hai vinto!";
-                        LabelGiocatoreBianco.ScaleTo(1.5, 250, Easing.SinOut);
-                        LabelGiocatoreNero.ScaleTo(1, 250, Easing.SinOut);
-                        LabelGiocatoreNero.Text = "Hai perso!";
                         await DisplayAlert("Fine gioco", "Vince bianco", "Chiudi");
                         GameEngine.Engine.GetInstance().resetGameEngine();
                         await Navigation.PopAsync();
                     }
                     else if(risultatoTurno == RisultatoTurno.FineGiocoVinceNero)
                     {
-                        LabelGiocatoreNero.Text = "Hai vinto!";
-                        LabelGiocatoreNero.ScaleTo(1.5, 250, Easing.SinOut);
-                        LabelGiocatoreBianco.ScaleTo(1, 250, Easing.SinOut);
-                        LabelGiocatoreBianco.Text = "Hai perso!";
                         await DisplayAlert("Fine gioco", "Vince nero", "Chiudi");
                         GameEngine.Engine.GetInstance().resetGameEngine();
                         await Navigation.PopAsync();
